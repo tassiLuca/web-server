@@ -1,0 +1,69 @@
+aside {
+    margin: 20px 0 20px 5%;
+    width: 25%;
+    float: left;
+}
+
+aside fieldset {
+    text-align: center;
+    border: 1px solid lightblue;
+    margin: 20px 0;
+}
+
+aside fieldset > ul {
+    padding: 0;
+}
+
+aside fieldset > ul > li {
+    list-style: none;
+}
+
+aside form > label {
+    line-height: 2em;
+    display: block;
+    width: 100%;
+}
+
+aside form > label > input {
+    width: 100%;
+    padding: 5px 0;
+    border-radius: 5px;
+    border: 1px solid;
+    text-align: center;
+}
+
+aside form > input[type=submit] {
+    margin-top: 1em;
+}
+
+aside form > input[type=submit],
+aside fieldset > ul > li > a {
+    color: blue;
+    text-decoration: none;
+    cursor: pointer;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: lightblue;
+    box-shadow: 5px 5px 8px rgba(58, 58, 226, 0.6);
+}
+
+aside form > input[type=submit]:hover,
+aside fieldset > ul > li > a:hover {
+    font-weight: bold;
+    background-color: blue;
+    color: white;
+}
+
+main {
+    width: 60%;
+    float: right;
+    text-align: left;
+    color: black;
+}
+
+footer {
+    width: 100%;
+    display: inline-block;
+    text-align: center;
+}

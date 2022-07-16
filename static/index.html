@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="it">
+    <head>
+        <meta charset="UTF-8">
+        <title>Agenzia di viaggi</title>
+        <link rel="stylesheet" href="style/commons.css" />
+        <link rel="stylesheet" href="style/index.css" />
+    </head>
+    <body>
+        <header>
+            <h1>Agenzia di viaggi in reti</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="destinations.html">Destinazioni</a></li>
+                    <li><a href="hotels.html">Hotel</a></li>
+                    <li><a href="promo.html">Promo</a></li>
+                    <li><a href="who.html">Chi siamo</a></li>
+                </ul>
+            </nav>
+        </header>
+        <aside>
+            <fieldset>
+                <legend>Accedi all'area riservata</legend>
+                <form action="admin.html" method="post">
+                    <label>Nome Utente: <input type="text" name="username" required /></label>
+                    <label>Password: <input type="password" name="password" required /></label>
+                    <input type="submit" value="ACCEDI" />
+                </form>
+            </fieldset>
+            <fieldset>
+                <legend>Downloads</legend>
+                <ul>
+                    <li><a href="./res/multithread-http-server.pdf">Scarica pdf web server</button></li>
+                </ul>
+            </fieldset>
+        </aside>
+        <main>
+            <h2>Svolgimento traccia 3: web server</h2>
+            <h3>Specifiche:</h3>
+            <p> Si immagini di dover realizzare un Web Server in Python per una agenzia di viaggi. </p>
+            <img src="./res/arch.png" alt="Architettura web server Python" />
+            <p>I requisiti del Web Server sono i seguenti:</p>
+            <ul>
+                <li>Il web server deve consentire l'accesso a più utenti in contemporanea</li>
+                <li>La pagina iniziale deve consentire di visualizzare la lista dei servizi erogati dall'agenzia di viaggi e per ogni servizio avere un link di riferimento ad una pagina dedicata presente nella stessa <em>working directory</em> della pagina principale</li>
+                <li>Nella pagina principale dovrà anche essere presente un link per il download di un file pdf da parte del browser</li>
+                <li>Si chiede di autenticare gli utenti nella fase iniziale della connessione.</li>
+                <li>L'interruzione da tastiera (o da console) dell'esecuzione del web server deve essere opportunamente gestita in modo da liberare la risorsa socket.</li>
+            </ul>
+        </main>
+        <footer>
+            <p>Progetto di Programmazioni di Reti - Traccia 3: Python Web Server - Tassinari Luca</p>
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,48 @@
+html {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h1, h2, h3 {
+    text-align: center;
+}
+
+nav > ul {
+    padding: 0;
+    text-align: center;
+}
+
+nav > ul > li {
+    list-style: none;   
+    display: inline-block;
+    margin: 0 1%;
+    padding: 10px;
+}
+
+nav > ul > li > a {
+    padding: 10px;
+    background-color: lightblue;
+    border-radius: 10px;
+    color: black;
+    text-decoration: none;
+    box-shadow: 5px 5px 8px rgba(58, 58, 226, 0.6);
+}
+
+nav > ul > li > a:hover {
+    font-weight: bold;
+    background-color: blue;
+    color: white;
+    text-decoration: none;
+}
+
+main {
+    margin: 20px 5%;
+    text-align: center;
+}
+
+main > span {
+    font-size: 100px;
+}
+
+footer {
+    text-align: center;
+}
