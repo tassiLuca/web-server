@@ -54,6 +54,7 @@ class AppRequestHandler(http.server.BaseHTTPRequestHandler):
     def parse_data(self):
         request_type, pdict = parse_header(self.headers['content-type'])
         if request_type == 'multipart/form-data':
+            pdict['boundary'] = pdict['boundary'].encode()
             post_data = parse_multipart(self.rfile, pdict)
         elif request_type == 'application/x-www-form-urlencoded':
             length = int(self.headers['content-length'])
