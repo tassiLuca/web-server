@@ -15,6 +15,11 @@ class AppRequestHandler(http.server.BaseHTTPRequestHandler):
     @see https://docs.python.org/3/library/http.server.html#http.server.BaseHTTPRequestHandler
     """
 
+    _DEFAULT_PAGE = "index.html"
+    _ADMIN_PAGE = "admin.html"
+    _PAGES_DIR = "./static/"
+    _NOT_FOUND_DIR = "./static/not-found.html"
+
     def __init__(self, request: bytes, client_address: Tuple[str, int], server: socketserver.BaseServer):
         self.login = LoginAuthenticator()
         super().__init__(request, client_address, server)
@@ -22,10 +27,10 @@ class AppRequestHandler(http.server.BaseHTTPRequestHandler):
     def load_html(self):
         sub_path = self.path[1:]
         if sub_path == "":
-            sub_path = "index.html"
-        path = "./static/" + sub_path
+            sub_path = self._DEFAULT_PAGE
+        path = self._PAGES_DIR + sub_path
         if not exists(path):
-            path = "./static/not-found.html"
+            path = self._NOT_FOUND_DIR
         self.responde(path)
 
     def do_GET(self):
@@ -36,9 +41,9 @@ class AppRequestHandler(http.server.BaseHTTPRequestHandler):
     def do_POST(self):
         sub_path = self.path[1:]
         post_vars = self.parse_data()
-        if sub_path == "admin.html" and post_vars:
+        if sub_path == self._ADMIN_PAGE and post_vars:
             res = self.login.authenticate(post_vars['username'][0], post_vars['password'][0])
-            self.responde("./static/admin.html" if res else "./static/not-found.html")
+            self.responde(self._PAGES_DIR + self._ADMIN_PAGE if res else self._NOT_FOUND_DIR)
 
     def responde(self, page_path):
         self.send_response(200)
@@ -47,12 +52,12 @@ class AppRequestHandler(http.server.BaseHTTPRequestHandler):
             self.wfile.write(file.read())
 
     def parse_data(self):
-        ctype, pdict = parse_header(self.headers['content-type'])
-        if ctype == 'multipart/form-data':
-            postvars = parse_multipart(self.rfile, pdict)
-        elif ctype == 'application/x-www-form-urlencoded':
+        request_type, pdict = parse_header(self.headers['content-type'])
+        if request_type == 'multipart/form-data':
+            post_data = parse_multipart(self.rfile, pdict)
+        elif request_type == 'application/x-www-form-urlencoded':
             length = int(self.headers['content-length'])
-            postvars = parse_qs(self.rfile.read(length).decode())
+            post_data = parse_qs(self.rfile.read(length).decode())
         else:
-            postvars = {}
-        return postvars
+            post_data = {}
+        return post_data

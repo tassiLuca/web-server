@@ -4,6 +4,9 @@ import sys
 
 
 class WebServerAgent:
+    """
+    The agent, i.e. active component, which runs the web server.
+    """
 
     def __init__(self):
         self.server = None
