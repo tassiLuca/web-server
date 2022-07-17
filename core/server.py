@@ -28,6 +28,7 @@ class WebServerAgent:
         signal.signal(signal.SIGINT, signal_handler)
 
         try:
+            print("[SERVER] Web server active on port " + str(port))
             while True:
                 self.server.serve_forever()
         except KeyboardInterrupt:
