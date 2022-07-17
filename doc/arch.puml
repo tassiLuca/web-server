@@ -1,0 +1,31 @@
+@startuml arch
+
+class BaseHTTPRequestHandler
+
+note bottom of AppRequestHandler
+This is the concrete handler of 
+requests which arrives to the 
+server. 
+endnote
+class AppRequestHandler extends BaseHTTPRequestHandler {
+    - login: LoginAuthenticator
+    - load_html()
+    - responde(page_path)
+    - parse_data()
+    + do_GET()
+    + do_POST()
+}
+
+class WebServerAgent {
+    + run(port: int)
+}
+
+WebServerAgent .right.> AppRequestHandler : send the request to
+
+class LoginAuthenticator {
+    + authenticate(usr: string, pwd: string): bool
+}
+
+AppRequestHandler o-right- LoginAuthenticator
+
+@enduml
