@@ -4,7 +4,13 @@
     <p>Tassinari Luca &bull; Matr. 921373</p>
 </div>
 
-## Analisi dei requisiti
+- [1. Analisi dei requisiti](#1-analisi-dei-requisiti)
+- [2. Design](#2-design)
+  - [2.1. Design dettagliato](#21-design-dettagliato)
+- [3. Librerie utilizzate](#3-librerie-utilizzate)
+- [4. Come avviare l'applicazione?](#4-come-avviare-lapplicazione)
+
+## 1. Analisi dei requisiti
 Si vuole realizzare un _web server_ per un'agenzia di viaggi. 
 Di seguito sono elencati per punti i requisiti del sistema.
 - il _web server_ deve consentire l'accesso a più utenti in contemporanea;
@@ -13,7 +19,7 @@ Di seguito sono elencati per punti i requisiti del sistema.
 - si richiede la possibilità di autenticare gli utenti;
 - l'interruzione da tastiera dell'esecuzione del _web server_ deve essere opportunamente gestita in modo da liberare la risorsa _socket_.
 
-## Design 
+## 2. Design 
 L'architettura del sistema è molto semplice ed è presenta qui di seguito.
 
 ![Architettura del sistema](./out/arch.svg)
@@ -22,7 +28,7 @@ L'architettura del sistema è molto semplice ed è presenta qui di seguito.
 - `AppRequestHandler` è la classe che si occupa della gestione delle richieste HTTP che arrivano al server web dai vari _client_. Si noti che questa classe estende [`BaseHTTPRequestHandler`](https://docs.python.org/3/library/http.server.html#http.server.BaseHTTPRequestHandler), definita all'interno del modulo `http.server`, implementando la logica delle risposte all'interno dei due metodi `do_GET()` e `do_POST()`. 
 - `LoginAuthenticator`: classe che si occupa dell'autenticazione all'area riservata del sito web.
 
-### Design dettagliato
+### 2.1. Design dettagliato
 Per permettere al server di gestire più client in contemporanea è necessario fare uso di più _thread_, uno per ciascun _client_ che si connette: in particolare, per ogni _client_ che si connette al _web server_, il _server_ crea un nuovo _thread_ il cui compito è quello di rispondere al _client_; una volta esaurito il suo compito, termina. 
 
 ![Threads](out/threads.svg)
@@ -45,7 +51,9 @@ Di seguito un diagramma di sequenza che mostra un esempio di possibile interazio
 
 ![Diagramma di sequenza interazioni](./out/sequence.svg)
 
-## Librerie utilizzate
+Per quanto riguarda la richiesta di poter scaricare file PDF, è sufficiente aggiungere nell'HTML un link alla risorsa specificata (in locale).
+
+## 3. Librerie utilizzate
 Nell'implementazione sono state usati i seguenti moduli:
 - `socketserver` per la gestione multi-thread del _web server_;
 - `http` per l'_Handler_ delle richieste;
@@ -53,7 +61,7 @@ Nell'implementazione sono state usati i seguenti moduli:
 - `cgi` per il parsing degli argomenti passati nel body della richiest POST HTTP;
 - `json` per l'estrazione delle credenziali (scritte in file JSON).
 
-## Come avviare l'applicazione?
+## 4. Come avviare l'applicazione?
 Semplicemente (dalla _route_ del progetto):
 ```
 python3 ./app.py [port_number]
