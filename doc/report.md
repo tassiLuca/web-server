@@ -12,7 +12,7 @@
 
 ## 1. Analisi dei requisiti
 Si vuole realizzare un _web server_ per un'agenzia di viaggi. 
-Di seguito sono elencati per punti i requisiti del sistema.
+Di seguito sono elencati per punti i requisiti del sistema:
 - il _web server_ deve consentire l'accesso a più utenti in contemporanea;
 - la _home page_ del sito deve permettere la visualizzazione della lista di servizi erogati dall'agenzia viaggi (con relativo _link_ ad una pagina dedicata);
 - devono esserci la possibilità d'inserire _link_ per il _download_ di documenti pdf;
@@ -29,11 +29,11 @@ L'architettura del sistema è molto semplice ed è presenta qui di seguito.
 - `LoginAuthenticator`: classe che si occupa dell'autenticazione all'area riservata del sito web.
 
 ### 2.1. Design dettagliato
-Per permettere al server di gestire più client in contemporanea è necessario fare uso di più _thread_, uno per ciascun _client_ che si connette: in particolare, per ogni _client_ che si connette al _web server_, il _server_ crea un nuovo _thread_ il cui compito è quello di rispondere al _client_; una volta esaurito il suo compito, termina. 
+Per permettere al server di gestire più client in contemporanea è necessario fare uso di più _thread_, uno per ciascun _client_: in particolare, per ogni _client_ che si connette al _web server_, il _server_ crea un nuovo _thread_ il cui compito è quello di rispondere al _client_; una volta esaurito il suo compito, termina. 
 
 ![Threads](out/threads.svg)
 
-A tale scopo si fa uso della funzione `ThreadingTCPServer` per gestire più richieste all'interno del modulo `http.server` e a cui viene passato il concreto _handler_ che dovrà gestire le richieste di ciascun _client_ (nel caso specifico `AppRequestHandler`).
+A tale scopo si fa uso della funzione `ThreadingTCPServer` (all'interno del modulo `http.server`) a cui viene passato il concreto _handler_ che dovrà gestire le richieste di ciascun _client_ (nel caso specifico `AppRequestHandler`).
 
 I due metodi `do_GET()` e `do_POST()` definiscono la logica di gestione per le richieste, rispettivamente, GET e POST. 
 
@@ -51,7 +51,7 @@ Di seguito un diagramma di sequenza che mostra un esempio di possibile interazio
 
 ![Diagramma di sequenza interazioni](./out/sequence.svg)
 
-Per quanto riguarda la richiesta di poter scaricare file PDF, è sufficiente aggiungere nell'HTML un link alla risorsa specificata (in locale).
+Per quanto riguarda la richiesta di poter scaricare file PDF è sufficiente aggiungere nell'HTML un link alla risorsa specificata (in locale).
 
 ## 3. Librerie utilizzate
 Nell'implementazione sono state usati i seguenti moduli:

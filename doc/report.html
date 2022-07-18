@@ -382,7 +382,7 @@ code {
 </ul>
 <h2 id="1-analisi-dei-requisiti">1. Analisi dei requisiti</h2>
 <p>Si vuole realizzare un <em>web server</em> per un'agenzia di viaggi.
-Di seguito sono elencati per punti i requisiti del sistema.</p>
+Di seguito sono elencati per punti i requisiti del sistema:</p>
 <ul>
 <li>il <em>web server</em> deve consentire l'accesso a più utenti in contemporanea;</li>
 <li>la <em>home page</em> del sito deve permettere la visualizzazione della lista di servizi erogati dall'agenzia viaggi (con relativo <em>link</em> ad una pagina dedicata);</li>
@@ -399,9 +399,9 @@ Di seguito sono elencati per punti i requisiti del sistema.</p>
 <li><code>LoginAuthenticator</code>: classe che si occupa dell'autenticazione all'area riservata del sito web.</li>
 </ul>
 <h3 id="21-design-dettagliato">2.1. Design dettagliato</h3>
-<p>Per permettere al server di gestire più client in contemporanea è necessario fare uso di più <em>thread</em>, uno per ciascun <em>client</em> che si connette: in particolare, per ogni <em>client</em> che si connette al <em>web server</em>, il <em>server</em> crea un nuovo <em>thread</em> il cui compito è quello di rispondere al <em>client</em>; una volta esaurito il suo compito, termina.</p>
+<p>Per permettere al server di gestire più client in contemporanea è necessario fare uso di più <em>thread</em>, uno per ciascun <em>client</em>: in particolare, per ogni <em>client</em> che si connette al <em>web server</em>, il <em>server</em> crea un nuovo <em>thread</em> il cui compito è quello di rispondere al <em>client</em>; una volta esaurito il suo compito, termina.</p>
 <p><img src="out/threads.svg" alt="Threads"></p>
-<p>A tale scopo si fa uso della funzione <code>ThreadingTCPServer</code> per gestire più richieste all'interno del modulo <code>http.server</code> e a cui viene passato il concreto <em>handler</em> che dovrà gestire le richieste di ciascun <em>client</em> (nel caso specifico <code>AppRequestHandler</code>).</p>
+<p>A tale scopo si fa uso della funzione <code>ThreadingTCPServer</code> (all'interno del modulo <code>http.server</code>) a cui viene passato il concreto <em>handler</em> che dovrà gestire le richieste di ciascun <em>client</em> (nel caso specifico <code>AppRequestHandler</code>).</p>
 <p>I due metodi <code>do_GET()</code> e <code>do_POST()</code> definiscono la logica di gestione per le richieste, rispettivamente, GET e POST.</p>
 <p>In generale, le richieste GET vengono gestite controllando che la risorsa richiesta esista, restituendola laddove presente oppure restituendo una pagina di <em>default</em> di errore (<code>not-found.html</code>).</p>
 <p>La richiesta POST è implementata per effettuare l'autenticazione al sito: quando l'utente compila ed effettua il <em>submit</em> del <em>form</em> viene inviata una richiesta POST.
@@ -411,7 +411,7 @@ Questo, tuttavia, <strong>non</strong> significa che la trasmissione dei dati è
 <p><code>LoginAuthenticator</code> effettua banalmente il controllo della corrispondenza tra le credenziali immesse dall'utente nel <em>form</em> e quelle presenti nel sistema (recuperandole dal file <code>login.json</code> - approccio sicuramente non sicuro!).</p>
 <p>Di seguito un diagramma di sequenza che mostra un esempio di possibile interazione con il <em>web server</em>:</p>
 <p><img src="./out/sequence.svg" alt="Diagramma di sequenza interazioni"></p>
-<p>Per quanto riguarda la richiesta di poter scaricare file PDF, è sufficiente aggiungere nell'HTML un link alla risorsa specificata (in locale).</p>
+<p>Per quanto riguarda la richiesta di poter scaricare file PDF è sufficiente aggiungere nell'HTML un link alla risorsa specificata (in locale).</p>
 <h2 id="3-librerie-utilizzate">3. Librerie utilizzate</h2>
 <p>Nell'implementazione sono state usati i seguenti moduli:</p>
 <ul>
