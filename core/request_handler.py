@@ -3,7 +3,6 @@ import socketserver
 from os.path import exists
 from cgi import parse_header, parse_multipart
 from urllib.parse import parse_qs
-
 from typing import Tuple
 
 from core.login import LoginAuthenticator
